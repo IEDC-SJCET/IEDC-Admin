@@ -3,7 +3,7 @@
 
 :root {
     --green: #56c23e;
-    --lightgreen: #56c23ec3;
+    --lightgreen: #56c23e46;
     --grey: rgb(240, 240, 240);
     --bggrey: #f0f0f0;
     --daark : #24292f;
@@ -41,7 +41,7 @@ html,body {
     }
     &:hover,
     &:focus{
-        border: 1px solid var(--daark);
+        // border: 1px solid var(--daark);
         color: var(--daark);
         background-color: var(--lightgreen);
         &>span {
