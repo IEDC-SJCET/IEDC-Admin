@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap");
+:root {
+  --green: #56c23e;
+  --lightgreen: #56c23ec3;
+  --grey: rgb(240, 240, 240);
+  --bggrey: #f0f0f0;
+  --daark: #24292f;
+}
+
+.greencolor {
+  color: var(--green);
+  border-color: var(--green) !important;
+}
+
+p, nav, h5, h3, .h3, h2, .h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+::-moz-selection {
+  color: white;
+  background: var(--green);
+}
+
+.preselection,
+::-moz-selection,
+::selection {
+  color: white;
+  background: var(--green);
+}
+
+.form-field {
+  min-height: 46px;
+  border: 1px solid var(--green);
+  padding: 0 16px;
+  color: var(--daark);
+  outline: 0;
+  background-color: var(--grey);
+  transition: 0.2s;
+  display: flex;
+}
+.form-field > span {
+  color: var(--green);
+}
+.form-field:hover, .form-field:focus {
+  border: 1px solid var(--daark);
+  color: var(--daark);
+  background-color: var(--lightgreen);
+}
+.form-field:hover > span, .form-field:focus > span {
+  color: var(--daark);
+}
+
+.mybtn {
+  background-color: var(--grey);
+  color: var(--daark);
+  font-family: "Dm Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.mybtn2 {
+  background-color: transparent;
+  color: white;
+  font-family: "Dm Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.text-success {
+  color: var(--green) !important;
+}
+
+.btn-success {
+  background-color: var(--green) !important;
+}
+
+.card {
+  border-radius: 0 !important;
+}
+
+.shadow-lg {
+  border-radius: 13px !important;
+  box-shadow: 5px 5px 17px #dbdbdb, -5px -5px 17px #ffffff !important;
+  border: none !important;
+}
+
+.shadow-sm {
+  border-radius: 13px !important;
+  box-shadow: 5px 5px 17px #2a2a2a, -5px -5px 17px #383838 !important;
+  border: none !important;
+}
+
+a, button {
+  text-decoration: none;
+  border-radius: 0 !important;
+  border: 0;
+  background-color: transparent;
+}
+
+#bgdots {
+  background-color: rgb(240, 240, 240);
+}
+
+.fs-7 {
+  font-weight: lighter !important;
+  font-size: 0.9rem !important;
+}
+
+@media (max-width: 426px) {
+  .fs-7 {
+    font-weight: normal !important;
+    font-size: 0.8rem !important;
+  }
+}
+#loading,
+#loader {
+  position: fixed;
+  z-index: 999999;
+  background-color: var(--bggrey);
+}
+
+#loader {
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
+
+.lds-ring {
+  top: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 10rem !important;
+  background-color: white;
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid var(--green);
+  border-radius: 50%;
+  -webkit-animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+          animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--green) transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  -webkit-animation-delay: -0.45s;
+          animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  -webkit-animation-delay: -0.15s;
+          animation-delay: -0.15s;
+}
+
+@-webkit-keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.drop-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border-style: dashed;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__thumb {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  position: relative;
+}
+
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.5;
+  padding: 5px 0;
+  color: var(--bggrey);
+  background: var(--daark);
+  font-size: 18px;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
