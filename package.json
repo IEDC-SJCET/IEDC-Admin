@@ -1,0 +1,27 @@
+{
+  "name": "iedc-admin",
+  "version": "1.0.0",
+  "description": "simple admin panel for the IEDC Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajatsandeepsen/IEDC-Admin.git"
+  },
+  "author": "Rajat Sandeep",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajatsandeepsen/IEDC-Admin/issues"
+  },
+  "homepage": "https://github.com/rajatsandeepsen/IEDC-Admin#readme",
+  "dependencies": {
+    "firebase": "^9.14.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  }
+}

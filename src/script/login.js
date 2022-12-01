@@ -9,11 +9,10 @@ loginForm.addEventListener('submit', (e) => {
   const password = document.querySelector('#password').value;
 
   // log the user in
-  auth.signInWithEmailAndPassword(email, password).then((cred) => {
-    // close the signup modal & reset form
-    console.log(cred.user);
+  signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    console.log(userCredential.user);
     loginForm.reset();
     OpenLoading();
-  });
+  })
 
 });
