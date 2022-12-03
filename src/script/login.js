@@ -1,4 +1,4 @@
-
+import {logout} from "./options.js";
 //firebase init
 import { initializeApp } from 'firebase/app';
 const firebaseConfig = {
@@ -14,7 +14,7 @@ initializeApp(firebaseConfig);
 
 
 // firebase auth
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 const auth = getAuth();
 
 // firebase auth init
@@ -22,7 +22,11 @@ export function authINIT(){
     onAuthStateChanged(auth, user => {
         if (user) {
         console.log('user logged in: ', user.email);
-        $("#app").load( "../dist/forms/options.html", ()=> {});
+        $("#app").load( "../dist/forms/options.html", ()=> {
+
+          logout();
+
+        });
 
       }
       else {
@@ -31,6 +35,20 @@ export function authINIT(){
       }
     });
 }
+
+
+export function authLogout(){
+  signOut(auth).then(() => {
+      console.log('user signed out')
+      alert("user signed out");
+      loadLoginPage();
+    })
+    .catch(err => {
+      console.log(err.message)
+      alert(err.message);
+    })
+}
+
 
 // login page load
 function loadLoginPage(){
