@@ -6,3 +6,7 @@ export function closeLoading() {
 export function OpenLoading() {
     document.getElementById("loading").style.display = 'block';
 }
+
+export function clearValue(id) {
+    document.getElementById(id).value = "";
+}

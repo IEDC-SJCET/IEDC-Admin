@@ -219,4 +219,24 @@ a, button {
   background: var(--daark);
   font-size: 18px;
   text-align: center;
+}
+
+.choice {
+  min-height: 150px;
+  color: var(--green);
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px dashed var(--green);
+  outline: 0;
+  background-color: var(--bggrey);
+  transition: 0.2s;
+}
+.choice:hover, .choice:focus {
+  border: 2px dashed var(--green);
+  background-color: var(--lightgreen);
+  color: var(--daark);
+}
+.choice i {
+  font-size: 2rem;
+  font-weight: 600;
 }/*# sourceMappingURL=style.css.map */
