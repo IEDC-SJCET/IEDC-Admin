@@ -1,4 +1,5 @@
-import {logout} from "./options.js";
+import {allOptions} from "./options.js";
+import {closeLoading,OpenLoading,clearValue} from "./main.js";
 //firebase init
 import { initializeApp } from 'firebase/app';
 const firebaseConfig = {
@@ -22,10 +23,12 @@ export function authINIT(){
     onAuthStateChanged(auth, user => {
         if (user) {
         console.log('user logged in: ', user.email);
+
+        OpenLoading();
         $("#app").load( "../dist/forms/options.html", ()=> {
 
-          logout();
-
+          allOptions();//dont touch anything here
+          closeLoading();
         });
 
       }
@@ -52,7 +55,7 @@ export function authLogout(){
 
 // login page load
 function loadLoginPage(){
-
+    OpenLoading();
     $("#app").load( "../dist/forms/login.html", ()=> {
 
           console.log("login page loaded");
@@ -80,5 +83,6 @@ function loadLoginPage(){
               })
 
           })
+          closeLoading();
     });
 }

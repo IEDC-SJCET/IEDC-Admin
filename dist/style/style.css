@@ -213,12 +213,22 @@ a, button {
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 300px;
   opacity: 0.5;
   padding: 5px 0;
   color: var(--bggrey);
   background: var(--daark);
   font-size: 18px;
   text-align: center;
+}
+
+.panelDropZone {
+  width: 100%;
+  min-height: 150px !important;
+}
+
+.form2 {
+  max-width: 500px !important;
 }
 
 .choice {

@@ -1,0 +1,102 @@
+<div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+    <h2  class="text-black fw-bolder fs-2 text-center">
+        BOOTCAMP - <span style="color: var(--green) ;">LIVE <i class="bi bi-app-indicator"></i></span>
+    </h2>
+<form id="uploadform"
+    class="card shadow-lg p-3 gap-3">
+    <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center gap-3">
+        <div class="drop-zone panelDropZone form-field flex-grow-1 col rounded-1">
+            <span class="drop-zone__prompt"><i class="bi bi-image fs-1"></i><br>
+                Drop file here or click to upload <br>(required)</span>
+            <input type="file" name="myFile" class="drop-zone__input" required>
+        </div>
+        <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
+            <input class="form-field form2 rounded-1 w-100" type="text" id="link" name="link" placeholder="Event Link" required>
+            <div class="d-flex gap-2 w-100">
+                <h2 class="fs-6  fw-normal text-black p-0">
+                    End Date of Notification <br> (Auto Turn-Off)
+                </h2>
+                <input class="form-field rounded-1" type="date" id="dateE" name="dateE" placeholder="Ending">
+            </div>
+
+        </div>
+    </div>
+    <span class="w-100 text-center"><button type="submit" class="btn btn-success fw-bold rounded-5 px-5">Update&nbsp;<i
+                class="bi bi-exclamation-circle fw-bolder"></i></button></span>
+    <script>
+        
+            document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+                const dropZoneElement = inputElement.closest(".drop-zone");
+
+                dropZoneElement.addEventListener("click", (e) => {
+                    inputElement.click();
+                });
+
+                inputElement.addEventListener("change", (e) => {
+                    if (inputElement.files.length) {
+                        updateThumbnail(dropZoneElement, inputElement.files[0]);
+                    }
+                });
+
+                dropZoneElement.addEventListener("dragover", (e) => {
+                    e.preventDefault();
+                    dropZoneElement.classList.add("drop-zone--over");
+                });
+
+                ["dragleave", "dragend"].forEach((type) => {
+                    dropZoneElement.addEventListener(type, (e) => {
+                        dropZoneElement.classList.remove("drop-zone--over");
+                    });
+                });
+
+                dropZoneElement.addEventListener("drop", (e) => {
+                    e.preventDefault();
+
+                    if (e.dataTransfer.files.length) {
+                        inputElement.files = e.dataTransfer.files;
+                        updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                    }
+
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            /**
+             * Updates the thumbnail on a drop zone element.
+             *
+             * @param {HTMLElement} dropZoneElement
+             * @param {File} file
+             */
+            function updateThumbnail(dropZoneElement, file) {
+                let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+                // First time - remove the prompt
+                if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                    dropZoneElement.querySelector(".drop-zone__prompt").remove();
+                }
+
+                // First time - there is no thumbnail element, so lets create it
+                if (!thumbnailElement) {
+                    thumbnailElement = document.createElement("div");
+                    thumbnailElement.classList.add("drop-zone__thumb");
+                    dropZoneElement.appendChild(thumbnailElement);
+                }
+
+                thumbnailElement.dataset.label = file.name;
+
+                // Show thumbnail for image files
+                if (file.type.startsWith("image/")) {
+                    const reader = new FileReader();
+
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                        thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                    };
+                } else {
+                    thumbnailElement.style.backgroundImage = null;
+                }
+            }
+    </script>
+</form>
+<br><br>
+</div>
