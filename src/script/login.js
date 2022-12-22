@@ -14,6 +14,12 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 
+import { getFirestore } from "firebase/firestore";
+export const DB  = getFirestore();
+ 
+import { getStorage } from "firebase/storage";
+export const storage = getStorage();
+
 // firebase auth
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 const auth = getAuth();

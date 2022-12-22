@@ -1,4 +1,5 @@
 import { authLogout } from "./login.js";
+import { AlertFormJS } from "./notification.js";
 
 export function allOptions() {
     const authLogoutBTN = document.getElementById('authLogoutBTN');
@@ -28,7 +29,9 @@ const addAlertBTN = document.getElementById('addAlertBTN');
 
         $("#app").load( "../dist/forms/alertPANEL.html", ()=> {
 
-          //do something here
+          
+            // activate alert form
+            AlertFormJS();
 
         });
 
