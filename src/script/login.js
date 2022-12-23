@@ -80,7 +80,9 @@ function loadLoginPage(){
               signInWithEmailAndPassword(auth, email, password).then((cred) => {
                   console.log('user logined in:', cred.user);
                   loginForm.reset();
-                  $("#app").load( "../dist/forms/options.html", ()=> {});
+                  $("#app").load( "../dist/forms/options.html", ()=> {
+                    allOptions();//dont touch anything here
+                  });
               })
               .catch((err) => {
                   console.log("auth is not done brww, just try again");

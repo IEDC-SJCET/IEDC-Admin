@@ -2,13 +2,13 @@
     <h2  class="text-black fw-bolder fs-2 text-center">
         BOOTCAMP - <span style="color: var(--green) ;">LIVE <i class="bi bi-app-indicator"></i></span>
     </h2>
-<form id="alertform"
+<form id="formForAlert"
     class="card col-12 col-md-6 shadow-lg p-3 gap-3">
     <div class="w-100 h-100 d-flex flex-column flex-md-row justify-content-center gap-3">
         <div class="drop-zone panelDropZone form-field flex-grow-1 col rounded-1">
             <span class="drop-zone__prompt"><i class="bi bi-image fs-1"></i><br>
                 Drop file here or click to upload <br>(required)</span>
-            <input type="file" name="alertIMG" class="drop-zone__input" >
+            <input type="file" id="alertIMG" name="alertIMG" class="drop-zone__input" accept=".jpg, .jpeg, .png" required>
         </div>
         <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
             <input class="form-field form2 rounded-1 w-100" type="text" name="Alertlink" placeholder="Event Link" required>

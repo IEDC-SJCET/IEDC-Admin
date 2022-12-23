@@ -1,60 +1,58 @@
-import { addDoc,collection } from "firebase/firestore";
-import { DB, storage } from "./login";
-import {storageRef} from "firebase/storage";
-
-export const AlertFormJS = () =>{
-const onAlertSubmit = document.getElementById('alertform');
-const ALERTS = collection(DB,'ALERT');
-onAlertSubmit.addEventListener('submit', e => {
-    e.preventDefault();
-    console.log("before adding doc");
+import { addDoc, collection } from "firebase/firestore";
+import { DB } from "./login";
+import { uploadFile } from "./storage";
+import { OpenLoading, closeLoading, verifyUPDATE } from "./main";
 
 
-    const storageRef = ref(storage, 'ALERTS/' + onAlertSubmit.dateE.value);
-    var timestamp = Number(new Date());
-    // var storageRef = firebase.storage().ref(timestamp.toString());
-    var file_data = $('alertIMG').prop('file');
-    console.log(file_data);
-    // storageRef.put(file_data);
+const metadata = {
+  contentType: 'image/jpeg'
+};
 
-    // console.log(URL.createObjectURL(alertIMG.target.files[0]));
-    addDoc(ALERTS, {
-        link: onAlertSubmit.Alertlink.value,
-        expDATE: onAlertSubmit.dateE.value,
-    }).then(() => {
-        onAlertSubmit.reset();
-        console.log("Alert Submited");
-        //loading successfulll here
+var file;
+var file_name;
+var newURL;
 
+export const AlertFormJS = () => {
+    // var onAlertSubmit = $('#formForAlert')[0];
+    const onAlertSubmit = document.getElementById('formForAlert');
+    const ALERTS = collection(DB,'ALERT');
+
+    onAlertSubmit.addEventListener('submit',e => {
+        e.preventDefault();
+        OpenLoading();
+        console.log("before adding doc");
+
+        uploadFile("ALERT", file, file_name, metadata).then(r => {
+            newURL = r;
+            addDoc(ALERTS, {
+                link: onAlertSubmit.Alertlink.value,
+                expDATE: onAlertSubmit.dateE.value,
+                fileLINK: newURL
+            }).then(() => {
+                onAlertSubmit.reset();
+                console.log("Alert Submited");
+                $("#app").load( "../dist/forms/successfull.html", ()=> {
+                    verifyUPDATE(newURL);
+                });
+
+            })
+        }).catch(e => {
+            console.log(e);
+            $("#app").load( "../dist/forms/failed.html", ()=> {
+                verifyUPDATE('.');
+            });
+        })
+        .finally(()=>{
+            closeLoading();
+        })
     })
-})
+
+
+    const alertIMG = document.getElementById("alertIMG");
+    alertIMG.addEventListener('change',(e)=>{
+        file = e.target.files[0];
+        file_name = file.name;
+        
+    });
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

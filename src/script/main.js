@@ -10,3 +10,7 @@ export function OpenLoading() {
 export function clearValue(id) {
     document.getElementById(id).value = "";
 }
+
+export const verifyUPDATE = (URL)=>{
+    document.getElementById('verifyUPDATE').href = URL;
+}
