@@ -12,26 +12,31 @@ var file;
 var file_name;
 var newURL;
 
-export const AlertFormJS = () => {
-    // var onAlertSubmit = $('#formForAlert')[0];
-    const onAlertSubmit = document.getElementById('formForAlert');
-    const ALERTS = collection(DB,'ALERT');
 
-    onAlertSubmit.addEventListener('submit',e => {
+export const uploader = () => {
+    // var onAlertSubmit = $('#formForAlert')[0];
+    const uploadform = document.getElementById('uploadform');
+    const EVENTS = collection(DB,'EVENTS');
+
+    uploadform.addEventListener('submit',e => {
         e.preventDefault();
         OpenLoading();
-        console.log("before adding doc");
+        console.log("upLoading IMG");
 
-        uploadFile("ALERT", file, file_name, metadata).then(r => {
+
+        uploadFile("EVENTS", file, file_name, metadata).then(r => {
             newURL = r;
-            addDoc(ALERTS, {
-                link: onAlertSubmit.Alertlink.value,
-                expDATE: onAlertSubmit.dateE.value,
+            addDoc(EVENTS, {
+                name: uploadform.name.value,
+                redirect: uploadform.link.value,
+                firstDate: uploadform.dateS.value,
+                lastDate: uploadform.dateE.value,
+                textField: uploadform.message.value,
                 fileLINK: newURL,
                 timeStamp: getCurrentTimestamp()
             }).then(() => {
-                onAlertSubmit.reset();
-                console.log("Alert Submited");
+                uploadform.reset();
+                console.log("Event Submited");
                 $("#app").load( "../dist/forms/successfull.html", ()=> {
                     verifyUPDATE(newURL);
                 });
@@ -46,14 +51,32 @@ export const AlertFormJS = () => {
         .finally(()=>{
             closeLoading();
         })
+
+
     })
 
 
-    const alertIMG = document.getElementById("alertIMG");
-    alertIMG.addEventListener('change',(e)=>{
+    const eventIMG = document.getElementById("eventIMG");
+    eventIMG.addEventListener('change',(e)=>{
         file = e.target.files[0];
         file_name = file.name;
         
     });
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        

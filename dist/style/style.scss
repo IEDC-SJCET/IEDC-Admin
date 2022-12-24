@@ -74,6 +74,12 @@ html,body {
 }
 .btn-success {
     background-color: var(--green)!important;
+    border: 1px solid transparent!important;
+    &:hover{
+        border: var(--green) solid 1px !important;
+        background-color: var(--lightgreen)!important;
+        color: var(--daark)!important;
+    }
 }
 .card{
     border-radius: 0!important;

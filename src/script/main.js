@@ -14,3 +14,7 @@ export function clearValue(id) {
 export const verifyUPDATE = (URL)=>{
     document.getElementById('verifyUPDATE').href = URL;
 }
+
+export const getCurrentTimestamp = () => {
+  return Date.now()
+}
