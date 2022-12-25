@@ -1,7 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import { DB } from "./login";
 import { uploadFile } from "./storage";
-import { OpenLoading, closeLoading, verifyUPDATE, getCurrentTimestamp } from "./main";
+import { OpenLoading, closeLoading, verifyUPDATE, relativeDATE } from "./main";
 
 
 const metadata = {
@@ -27,13 +27,13 @@ export const uploader = () => {
         uploadFile("EVENTS", file, file_name, metadata).then(r => {
             newURL = r;
             addDoc(EVENTS, {
-                name: uploadform.name.value,
-                redirect: uploadform.link.value,
-                firstDate: uploadform.dateS.value,
-                lastDate: uploadform.dateE.value,
-                textField: uploadform.message.value,
-                fileLINK: newURL,
-                timeStamp: getCurrentTimestamp()
+                EventName: uploadform.name.value,
+                RedirectLink: uploadform.link.value,
+                EventStartsAt: relativeDATE(uploadform.dateS.value),
+                LinkExpireAt: relativeDATE(uploadform.dateE.value),
+                Description: uploadform.message.value,
+                IMG_URL: newURL,
+                UploadTimeStamp: Date.now()
             }).then(() => {
                 uploadform.reset();
                 console.log("Event Submited");

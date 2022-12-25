@@ -1,7 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import { DB } from "./login";
 import { uploadFile } from "./storage";
-import { OpenLoading, closeLoading, verifyUPDATE, getCurrentTimestamp } from "./main";
+import { OpenLoading, closeLoading, verifyUPDATE, relativeDATE } from "./main";
 
 
 const metadata = {
@@ -25,10 +25,10 @@ export const AlertFormJS = () => {
         uploadFile("ALERT", file, file_name, metadata).then(r => {
             newURL = r;
             addDoc(ALERTS, {
-                link: onAlertSubmit.Alertlink.value,
-                expDATE: onAlertSubmit.dateE.value,
-                fileLINK: newURL,
-                timeStamp: getCurrentTimestamp()
+                RedirectLink: onAlertSubmit.Alertlink.value,
+                ExpireAt: relativeDATE(onAlertSubmit.dateE.value),
+                IMG_URL: newURL,
+                UploadTimeStamp: Date.now()
             }).then(() => {
                 onAlertSubmit.reset();
                 console.log("Alert Submited");

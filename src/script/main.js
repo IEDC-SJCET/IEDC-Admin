@@ -14,7 +14,6 @@ export function clearValue(id) {
 export const verifyUPDATE = (URL)=>{
     document.getElementById('verifyUPDATE').href = URL;
 }
-
-export const getCurrentTimestamp = () => {
-  return Date.now()
-}
+ export const relativeDATE = (value) => {
+    return Date.parse(value) - 19800000;
+ }
