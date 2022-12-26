@@ -32,6 +32,7 @@ export const uploader = () => {
                 EventStartsAt: relativeDATE(uploadform.dateS.value),
                 LinkExpireAt: relativeDATE(uploadform.dateE.value),
                 Description: uploadform.message.value,
+                EventVenue: uploadform.venue.value,
                 IMG_URL: newURL,
                 UploadTimeStamp: Date.now()
             }).then(() => {
