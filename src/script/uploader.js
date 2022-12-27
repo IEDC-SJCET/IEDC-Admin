@@ -23,7 +23,7 @@ export const uploader = () => {
         OpenLoading();
         console.log("upLoading IMG");
 
-
+        file_name = (uploadform.name.value).replace(/ +/g,"");
         uploadFile("EVENTS", file, file_name, metadata).then(r => {
             newURL = r;
             addDoc(EVENTS, {
