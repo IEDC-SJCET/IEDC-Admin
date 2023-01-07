@@ -38,14 +38,14 @@ export const uploader = () => {
             }).then(() => {
                 uploadform.reset();
                 console.log("Event Submited");
-                $("#app").load( "../dist/forms/successfull.html", ()=> {
+                $("#app").load( "forms/successfull.html", ()=> {
                     verifyUPDATE(newURL);
                 });
 
             })
         }).catch(e => {
             console.log(e);
-            $("#app").load( "../dist/forms/failed.html", ()=> {
+            $("#app").load( "forms/failed.html", ()=> {
                 verifyUPDATE('.');
             });
         })

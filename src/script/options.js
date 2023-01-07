@@ -13,7 +13,7 @@ const addEventsBTN = document.getElementById('addEventsBTN');
         e.preventDefault();
         console.log("upload section loading");
 
-        $("#app").load( "../dist/forms/upload.html", ()=> {
+        $("#app").load( "forms/upload.html", ()=> {
           uploader();
         });
 
@@ -25,7 +25,7 @@ const addAlertBTN = document.getElementById('addAlertBTN');
         e.preventDefault();
         console.log("add alert");
 
-        $("#app").load( "../dist/forms/alertPANEL.html", ()=> {
+        $("#app").load( "forms/alertPANEL.html", ()=> {
             // activate alert form
             AlertFormJS();
         });

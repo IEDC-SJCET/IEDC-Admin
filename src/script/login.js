@@ -31,7 +31,7 @@ export function authINIT(){
         console.log('user logged in: ', user.email);
 
         OpenLoading();
-        $("#app").load( "../dist/forms/options.html", ()=> {
+        $("#app").load( "forms/options.html", ()=> {
 
           allOptions();//dont touch anything here
           closeLoading();
@@ -62,7 +62,7 @@ export function authLogout(){
 // login page load
 function loadLoginPage(){
     OpenLoading();
-    $("#app").load( "../dist/forms/login.html", ()=> {
+    $("#app").load( "forms/login.html", ()=> {
 
           console.log("login page loaded");
           const loginForm = document.getElementById("loginform");
@@ -80,7 +80,7 @@ function loadLoginPage(){
               signInWithEmailAndPassword(auth, email, password).then((cred) => {
                   console.log('user logined in:', cred.user);
                   loginForm.reset();
-                  $("#app").load( "../dist/forms/options.html", ()=> {
+                  $("#app").load( "forms/options.html", ()=> {
                     allOptions();//dont touch anything here
                   });
               })
