@@ -15,23 +15,23 @@ var newURL;
 export const AlertFormJS = () => {
     // var onAlertSubmit = $('#formForAlert')[0];
     const onAlertSubmit = document.getElementById('formForAlert');
-    const ALERTS = collection(DB,'ALERT');
+    const FORMS = collection(DB,'FORMS');
 
     onAlertSubmit.addEventListener('submit',e => {
         e.preventDefault();
         OpenLoading();
         console.log("before adding doc");
 
-        uploadFile("ALERT", file, file_name, metadata).then(r => {
+        uploadFile("FORM", file, file_name, metadata).then(r => {
             newURL = r;
-            addDoc(ALERTS, {
+            addDoc(FORMS, {
                 RedirectLink: onAlertSubmit.Alertlink.value,
                 ExpireAt: relativeDATE(onAlertSubmit.dateE.value),
                 IMG_URL: newURL,
                 UploadTimeStamp: Date.now()
             }).then(() => {
                 onAlertSubmit.reset();
-                console.log("Alert Submited");
+                console.log("Form Created");
                 $("#app").load( "forms/successfull.html", ()=> {
                     verifyUPDATE(newURL);
                 });

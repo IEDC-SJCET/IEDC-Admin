@@ -11,8 +11,6 @@ export function allOptions() {
 const addEventsBTN = document.getElementById('addEventsBTN');
     addEventsBTN.addEventListener('click', e => {
         e.preventDefault();
-        console.log("upload section loading");
-
         $("#app").load( "forms/upload.html", ()=> {
           uploader();
         });
@@ -20,20 +18,24 @@ const addEventsBTN = document.getElementById('addEventsBTN');
 
     });
 
-const addAlertBTN = document.getElementById('addAlertBTN');
-    addAlertBTN.addEventListener('click', e => {
+const createFormBTN = document.getElementById('createFormBTN');
+    createFormBTN.addEventListener('click', e => {
         e.preventDefault();
         console.log("add alert");
-
         $("#app").load( "forms/alertPANEL.html", ()=> {
-            // activate alert form
+            // this is not a alert panel thing
+            // im too lazy to rewrite it all to createForm thing
             AlertFormJS();
         });
-
-
     });
 
 
+const viewFormBTN = document.getElementById('viewFormBTN');
+    viewFormBTN.addEventListener('click', e => {
+        e.preventDefault();
+        $("#app").load( "forms/viewFormResponce.html", ()=> {
+            getLatestForm();
+        });
+    });
 }
-// const removeEventsBTN = document.getElementById('removeEventsBTN');
 

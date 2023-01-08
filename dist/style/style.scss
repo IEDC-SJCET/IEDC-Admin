@@ -4,7 +4,7 @@
 :root {
     --green: #56c23e;
     --lightgreen: #56c23e46;
-    --grey: rgb(240, 240, 240);
+    --grey: #f0f0f0;
     --bggrey: #f0f0f0;
     --daark : #24292f;
 }
@@ -14,12 +14,16 @@
 }
 p,nav,h5,h3,.h3,h2,.h2 {
     font-family: "Plus Jakarta Sans", sans-serif;
+    margin: 0;
 }
 
 html,body {
     scroll-behavior: smooth;
 }
-
+.bg-green{
+    background-color: var(--green);
+    height: 6px;
+}
 .preselection,
 ::-moz-selection,
 ::selection {
@@ -113,7 +117,8 @@ a,button{
 
 }
 #bgdots {
-    background-color: rgb(240, 240, 240);
+    background-color:var(--bggrey);
+    height: 100vh;
 }
 
 .fs-7 {
@@ -254,4 +259,49 @@ a,button{
             font-size: 2rem;
                 font-weight: 600;
         }
+}
+
+table {
+    overflow: auto;
+    border-radius: 13px;
+    thead {
+        tr {
+            background-color: var(--daark);
+            color: var(--bggrey);
+            font-weight: bold;
+            th {
+                padding: 12px 15px;
+            }
+        }
+    }
+    tbody {
+        tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            td {
+                padding: 12px 15px;
+            }
+            &:hover {
+                background-color: var(--lightgreen);
+            }
+            &:nth-child(even) {
+                background-color: var(--bggrey);
+                &:hover {
+                    background-color: var(--lightgreen);
+                }
+            }
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+}
+
+.card-img-top {
+    border-top-left-radius: 13px !important;
+    border-top-right-radius: 13px !important;
+}
+
+.card-img-bottom {
+    border-bottom-left-radius: 13px !important;
+    border-bottom-right-radius: 13px !important;
 }
