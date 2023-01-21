@@ -1,6 +1,8 @@
 import { authLogout } from "./login.js";
-import { AlertFormJS } from "./notification.js";
+import { autoFORM } from "./autoFORM.js";
 import { uploader } from "./uploader.js";
+import { viewFeedback } from "./getFEEDBACK.js";
+import { getLatestForm } from "./formTable";
 export function allOptions() {
     const authLogoutBTN = document.getElementById('authLogoutBTN');
     authLogoutBTN.addEventListener('click', e => {
@@ -21,11 +23,9 @@ const addEventsBTN = document.getElementById('addEventsBTN');
 const createFormBTN = document.getElementById('createFormBTN');
     createFormBTN.addEventListener('click', e => {
         e.preventDefault();
-        console.log("add alert");
-        $("#app").load( "forms/alertPANEL.html", ()=> {
-            // this is not a alert panel thing
-            // im too lazy to rewrite it all to createForm thing
-            AlertFormJS();
+        console.log("auto form loading");
+        $("#app").load( "forms/autoFORM.html", ()=> {
+            autoFORM();
         });
     });
 
@@ -37,5 +37,13 @@ const viewFormBTN = document.getElementById('viewFormBTN');
             getLatestForm();
         });
     });
-}
 
+
+const viewFeedbackBTN = document.getElementById('viewFeedbackBTN');
+    viewFeedbackBTN.addEventListener('click', e => {
+        e.preventDefault();
+        $("#app").load( "forms/viewFeedbacks.html", ()=> {
+            viewFeedback();
+        });
+    });
+}

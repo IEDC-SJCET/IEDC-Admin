@@ -12,12 +12,11 @@ var file;
 var file_name;
 var newURL;
 
-export const AlertFormJS = () => {
-    // var onAlertSubmit = $('#formForAlert')[0];
-    const onAlertSubmit = document.getElementById('formForAlert');
+export const autoFORM = () => {
+    const formForAlert = document.getElementById('formForAlert');
     const FORMS = collection(DB,'FORMS');
 
-    onAlertSubmit.addEventListener('submit',e => {
+    formForAlert.addEventListener('submit',e => {
         e.preventDefault();
         OpenLoading();
         console.log("before adding doc");
@@ -25,12 +24,12 @@ export const AlertFormJS = () => {
         uploadFile("FORM", file, file_name, metadata).then(r => {
             newURL = r;
             addDoc(FORMS, {
-                RedirectLink: onAlertSubmit.Alertlink.value,
-                ExpireAt: relativeDATE(onAlertSubmit.dateE.value),
+                RedirectLink: formForAlert.Alertlink.value,
+                ExpireAt: relativeDATE(formForAlert.dateE.value),
                 IMG_URL: newURL,
                 UploadTimeStamp: Date.now()
             }).then(() => {
-                onAlertSubmit.reset();
+                formForAlert.reset();
                 console.log("Form Created");
                 $("#app").load( "forms/successfull.html", ()=> {
                     verifyUPDATE(newURL);
