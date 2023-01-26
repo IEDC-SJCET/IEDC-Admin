@@ -187,6 +187,7 @@ a, button {
 
 #bgdots {
   background-color: var(--bggrey);
+  min-height: 100vh;
 }
 
 .fs-7 {
@@ -277,6 +278,7 @@ a, button {
   text-align: center;
   cursor: pointer;
   border-style: dashed;
+  min-height: 200px;
 }
 
 .drop-zone__input {

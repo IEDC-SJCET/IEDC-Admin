@@ -190,7 +190,7 @@ a,button{
 }
 #bgdots {
     background-color:var(--bggrey);
-    // height: 100vh;
+    min-height: 100vh;
 }
 
 .fs-7 {
@@ -275,6 +275,7 @@ a,button{
     text-align: center;
     cursor: pointer;
     border-style: dashed;
+    min-height: 200px;
 }
 
 // .drop-zone--over {
