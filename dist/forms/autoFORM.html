@@ -2,28 +2,44 @@
     <h2  class="text-black fw-bolder fs-2 text-center">
         AutoForm <span style="color: var(--green) ;"><i class="bi bi-file-earmark-arrow-up-fill"></i></span>
     </h2>
-<form id="formForAlert"
+<form id="autoForm"
     class="card col-12 col-md-6 shadow-lg p-3 gap-3">
-    <div class="w-100 h-100 d-flex flex-column flex-md-row justify-content-center gap-3">
-        <div class="drop-zone panelDropZone form-field flex-grow-1 col rounded-1">
+    <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
+        <div class="drop-zone form-field flex-grow-1 col rounded-1 w-100">
             <span class="drop-zone__prompt"><i class="bi bi-image fs-1"></i><br>
                 Drop file here or click to upload <br>(required)</span>
-            <input type="file" id="alertIMG" name="alertIMG" class="drop-zone__input" accept=".jpg, .jpeg, .png" required>
+            <input type="file" id="eventIMG" name="myFile" class="drop-zone__input" accept=".jpg, .jpeg, .png" required>
         </div>
+    </div>
+    <div class="w-100 h-100 d-flex flex-column flex-md-row justify-content-center gap-3">
         <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
             <input class="form-field form2 rounded-1 w-100" type="text" name="EventName" placeholder="Event Name" required>
             <input class="form-field rounded-1 w-100" type="text" onfocus="(this.type='date')" name="eventStartsAt" placeholder="Event Starts At" required>
             <input class="form-field rounded-1 w-100" type="text" onfocus="(this.type='date')" name="formEndsAt" placeholder="Form Expires At" required>
         </div>
+        <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
+            <textarea name="EventDes" class="form-field rounded-1 w-100 h-100 p-1" placeholder="&nbsp;Event Description" required></textarea>
+        </div>
     </div>
-    <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
-        <textarea name="EventDes" class="form-field rounded-1 w-100 h-100 p-1" placeholder="&nbsp;Event Description" required></textarea>
-        <input class="form-field form2 rounded-1 w-100" type="text" name="extQuestion" placeholder="External Question" required>
-        <input class="form-field form2 rounded-1 w-100" type="text" name="extQuestion" placeholder="External Question" required>
-        <input class="form-field form2 rounded-1 w-100" type="text" name="extQuestion" placeholder="External Question" required>
+    <div class="flex-grow-1 collapse" id="collapseExample">
+        <div class="flex-grow-1 col d-flex flex-column gap-3 align-items-center">
+            <input class="form-field form2 rounded-1 w-100" type="text" name="extText" placeholder="Details about the External Question">
+            <input class="form-field form2 rounded-1 w-100" type="text" name="extQ1" placeholder="Question 1">
+            <input class="form-field form2 rounded-1 w-100" type="text" name="extQ2" placeholder="Question 2">
+            <input class="form-field form2 rounded-1 w-100" type="text" name="extQ3" placeholder="Question 3">
+            <p class="text-start w-100 text-black-50">NB: Leave it blank if you want</p>
+        </div>
     </div>
-    <span class="w-100 text-center"><button type="submit" class="btn btn-success fw-bold rounded-5 px-5">Update&nbsp;<i
-                class="bi bi-exclamation-circle fw-bolder"></i></button></span>
+    
+    <div class="w-100 text-center gap-2 d-flex">
+        <button type="submit" class="btn btn-success fw-bold rounded-5 px-5">Update&nbsp;<i class="bi bi-exclamation-circle fw-bolder"></i></button>
+        <a class="btn btn-success fw-bold rounded-5 px-3" data-bs-toggle="collapse"
+                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Additional Questions <i class="bi bi-chevron-down"></i>
+            </a>
+    </div>
+    
+
 </form>
 <br><br>
 </div>

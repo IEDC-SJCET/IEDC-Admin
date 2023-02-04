@@ -28,8 +28,10 @@
                     reader.readAsDataURL(file);
                     reader.onload = () => {
                         thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                        console.log("done background change")
                     };
                 } else {
                     thumbnailElement.style.backgroundImage = null;
+                    console.log("not done background change")
                 }
             }

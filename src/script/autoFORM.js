@@ -5,7 +5,8 @@ import { OpenLoading, closeLoading, verifyUPDATE, relativeDATE } from "./main";
 import { updateThumbnail } from "./drop";
 
 const metadata = {
-  contentType: 'image/jpeg'
+  contentType: 'image/jpeg',
+  author: 'IEDC-SJCET-Palai'
 };
 
 var file;
@@ -13,47 +14,61 @@ var file_name;
 var newURL;
 
 export const autoFORM = () => {
-    const formForAlert = document.getElementById('formForAlert');
+    const autoForm = document.getElementById('autoForm');
     const FORMS = collection(DB,'FORMS');
 
-    formForAlert.addEventListener('submit',e => {
+    autoForm.addEventListener('submit',e => {
         e.preventDefault();
         OpenLoading();
-        console.log("before adding doc");
 
+        file_name = (autoForm.EventName.value).replace(/ +/g,"");
         uploadFile("FORM", file, file_name, metadata).then(r => {
             newURL = r;
+            let Q1 = autoForm.extQ1.value === ""? "empty" : autoForm.extQ1.value;
+            let Q2 = autoForm.extQ2.value === ""? "empty" : autoForm.extQ2.value;
+            let Q3 = autoForm.extQ3.value === ""? "empty" : autoForm.extQ3.value;
+            let extText = autoForm.extText.value === ""? "empty" : autoForm.extText.value;
+            let collectionName = (autoForm.EventName.value).replace(/ +/g,"");
+            
             addDoc(FORMS, {
-                RedirectLink: formForAlert.Alertlink.value,
-                ExpireAt: relativeDATE(formForAlert.dateE.value),
-                IMG_URL: newURL,
-                UploadTimeStamp: Date.now()
+
+                EventName: autoForm.EventName.value,
+                EventDescription: autoForm.EventDes.value,
+                EventStartAt: relativeDATE(autoForm.eventStartsAt.value),
+                FormEndsAt: relativeDATE(autoForm.formEndsAt.value),
+                TimeStamp: Date.now(),
+                ImgURL: newURL,
+                extText: extText,
+                extQ1: Q1,
+                extQ2: Q2,
+                extQ3: Q3,
+                collectionName: collectionName
+
             }).then(() => {
-                formForAlert.reset();
+                autoForm.reset();
                 console.log("Form Created");
                 $("#app").load( "forms/successfull.html", ()=> {
                     verifyUPDATE(newURL);
+                    closeLoading();
                 });
-
             })
-        }).catch(e => {
-            console.log(e);
-            $("#app").load( "forms/failed.html", ()=> {
-                verifyUPDATE('.');
-            });
-        })
-        .finally(()=>{
-            closeLoading();
-        })
+            .catch(e => {
+                console.log(e);
+                $("#app").load( "forms/failed.html", ()=> {
+                    verifyUPDATE(newURL);
+                    closeLoading();
+                });
+            })
+            }).catch(e => {
+                console.log(e);
+                $("#app").load( "forms/failed.html", ()=> {
+                    verifyUPDATE('.');
+                    closeLoading();
+                });
+            })
     })
 
 
-    // const alertIMG = document.getElementById("alertIMG");
-    // alertIMG.addEventListener('change',(e)=>{
-    //     file = e.target.files[0];
-    //     file_name = file.name;
-        
-    // });
     document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
                 const dropZoneElement = inputElement.closest(".drop-zone");
 

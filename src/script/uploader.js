@@ -5,7 +5,8 @@ import { OpenLoading, closeLoading, verifyUPDATE, relativeDATE } from "./main";
 import { updateThumbnail } from "./drop";
 
 const metadata = {
-  contentType: 'image/jpeg'
+  contentType: 'image/jpeg',
+  author: 'IEDC-SJCET-Palai'
 };
 
 var file;
@@ -40,6 +41,7 @@ export const uploader = () => {
                 console.log("Event Submited");
                 $("#app").load( "forms/successfull.html", ()=> {
                     verifyUPDATE(newURL);
+                    closeLoading();
                 });
 
             })
@@ -47,10 +49,8 @@ export const uploader = () => {
             console.log(e);
             $("#app").load( "forms/failed.html", ()=> {
                 verifyUPDATE('.');
+                closeLoading();
             });
-        })
-        .finally(()=>{
-            closeLoading();
         })
 
 
