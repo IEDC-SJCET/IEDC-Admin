@@ -17,7 +17,8 @@ export const verifyUPDATE = (URL)=>{
  export const relativeDATE = (value) => {
     return Date.parse(value) - 19800000;
  }
-
+ 
+//past relative
 export function timeDifference(current, previous) {
 
     var msPerMinute = 60 * 1000;
@@ -46,6 +47,41 @@ export function timeDifference(current, previous) {
 
     else if (elapsed < msPerYear) {
         return Math.round(elapsed/msPerMonth) + ' months ago';   
+    }
+
+    else {
+        return Math.round(elapsed/msPerYear ) + ' years ago';   
+    }
+}
+//future relative
+export function timeDifferenceFuture(current, previous) {
+
+    var msPerMinute = 60 * 1000;
+    var msPerHour = msPerMinute * 60;
+    var msPerDay = msPerHour * 24;
+    var msPerMonth = msPerDay * 30;
+    var msPerYear = msPerDay * 365;
+
+    var elapsed = -(current - previous);
+
+    if (elapsed < msPerMinute) {
+         return Math.round(elapsed/1000) + ' seconds';   
+    }
+
+    else if (elapsed < msPerHour) {
+         return Math.round(elapsed/msPerMinute) + ' minutes';   
+    }
+
+    else if (elapsed < msPerDay ) {
+         return Math.round(elapsed/msPerHour ) + ' hours';   
+    }
+
+    else if (elapsed < msPerMonth) {
+        return Math.round(elapsed/msPerDay) + ' days';   
+    }
+
+    else if (elapsed < msPerYear) {
+        return Math.round(elapsed/msPerMonth) + ' months';   
     }
 
     else {

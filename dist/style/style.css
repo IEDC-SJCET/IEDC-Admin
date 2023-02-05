@@ -82,6 +82,10 @@ html, body {
   color: var(--green) !important;
 }
 
+.btn {
+  font-family: "Dm Sans", sans-serif !important;
+}
+
 .btn-success {
   display: inline-block;
   background-color: var(--green) !important;
@@ -160,6 +164,13 @@ html, body {
 .btn-success:hover::after {
   transform: scale(1, 1);
   transform-origin: top left;
+}
+
+.btn-dark {
+  background-color: var(--daark) !important;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 0.6rem 1.2rem;
 }
 
 .card {
@@ -315,10 +326,10 @@ a, button {
 
 .choice {
   min-height: 150px;
-  color: var(--green);
+  color: var(--daark);
   font-size: 1rem;
   font-weight: 500;
-  border: 2px dashed var(--green);
+  border: 2px solid var(--lightgreen);
   outline: 0;
   background-color: var(--bggrey);
   transition: 0.2s;
