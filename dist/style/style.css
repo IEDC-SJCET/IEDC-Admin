@@ -43,7 +43,7 @@ html, body {
 
 .form-field {
   min-height: 46px;
-  border: 1px solid var(--green);
+  border: 1px solid var(--daark);
   padding: 0 16px;
   color: var(--daark);
   outline: 0;
@@ -52,7 +52,7 @@ html, body {
   display: flex;
 }
 .form-field > span {
-  color: var(--green);
+  color: var(--daark);
 }
 .form-field:hover, .form-field:focus {
   color: var(--daark);
@@ -90,6 +90,7 @@ html, body {
   display: inline-block;
   background-color: var(--green) !important;
   font-weight: bold;
+  padding: 0.5rem 5rem;
   font-size: 1rem;
   font-family: "Dm Sans", sans-serif;
   color: #fff;
@@ -97,7 +98,6 @@ html, body {
   border: solid transparent 1px !important;
   transition: all 0.4s;
   position: relative;
-  overflow: hidden;
   z-index: 1;
 }
 
