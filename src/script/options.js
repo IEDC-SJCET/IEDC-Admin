@@ -3,6 +3,9 @@ import { autoFORM } from "./autoFORM.js";
 import { uploader } from "./uploader.js";
 import { viewFeedback } from "./getFEEDBACK.js";
 import { getLatestForm } from "./formTable";
+import { startupform } from "./startup.js";
+
+
 export function allOptions() {
     const authLogoutBTN = document.getElementById('authLogoutBTN');
     authLogoutBTN.addEventListener('click', e => {
@@ -44,6 +47,14 @@ const viewFeedbackBTN = document.getElementById('viewFeedbackBTN');
         e.preventDefault();
         $("#app").load( "forms/viewFeedbacks.html", ()=> {
             viewFeedback();
+        });
+    });
+
+const viewCustomForm = document.getElementById('viewCustomForm');
+    viewCustomForm.addEventListener('click', e => {
+        e.preventDefault();
+        $("#app").load( "forms/startup.html", ()=> {
+            startupform();
         });
     });
 }
