@@ -38,9 +38,6 @@ async function callmeRightNow (qry, responcesTableBody) {
 
 function bodyTemplate (data){
 
-    
-    let member4 = typeof data.Member4  === 'object' ? `<td>${data.Member4.Name}</td><td>${data.Member4.Email}</td>` : `<td>NA</td><td>NA</td>`;
-    let member5 = typeof data.Member5  === 'object' ? `<td>${data.Member5.Name}</td><td>${data.Member5.Email}</td>` : `<td>NA</td><td>NA</td>`;
 
     let template = `<tr>
                     <td>${timeDifference(new Date(), new Date(data.UploadTimeStamp))}</td>
@@ -48,7 +45,10 @@ function bodyTemplate (data){
                     <td>${data.Leader.Name}</td>
                     <td>${data.Leader.Email}</td>
                     <td>${data.Leader.Phone}</td>
-                    <td><a class="btn btn-dark rounded" target="_blank" href="${data.projectDoc}"><i class="bi bi-eye-fill"></i></a></td>
+                    <td>
+                        <a class="btn btn-dark rounded" target="_blank" href="${data.projectDoc}"><i class="bi bi-eye-fill"></i></a>
+                        
+                    </td>
                     
                     <td>${data.FieldOfStudy}</td>
                     <td>${data.CurrentYear}</td>
@@ -56,8 +56,16 @@ function bodyTemplate (data){
 
                     <td>${data.Member2.Name}</td>
                     <td>${data.Member2.Email}</td>
+
                     <td>${data.Member3.Name}</td>
-                    <td>${data.Member3.Email}</td>`
+                    <td>${data.Member3.Email}</td>
+
+                    <td>${data.Member4.Name}</td>
+                    <td>${data.Member4.Email}</td>
+
+                    <td>${data.Member5.Name}</td>
+                    <td>${data.Member5.Email}</td>
+                    </tr>`
     
-    return template + member4 + member5 + `</tr>`
+    return template
 }
