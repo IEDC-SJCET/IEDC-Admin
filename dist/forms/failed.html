@@ -1,6 +1,6 @@
 <div class="w-100 min-vh-100 d-flex flex-column justify-content-center align-items-center gap-3 p-3">
     <h2 class="text-black fw-bolder fs-2 text-center">
-        BOOTCAMP - <span class="text-danger">EVENTS <i class="bi bi-lightning-fill"></i></span>
+        BOOTCAMP -<a id="backBTN" class="text-danger"> EVENTS <i class="bi bi-lightning-fill"></i></a>
     </h2>
     <div
     class="container card shadow-lg px-3 py-5 col-lg-8 col-xl-6 d-flex flex-column gap-3 justify-content-center align-items-center">
@@ -12,3 +12,8 @@
                 class="bi bi-chevron-right"></i></a></span>
     </div>
 </div>
+<script>
+    document.getElementById("backBTN").addEventListener("click", () => {
+        location.reload();
+    });
+</script>

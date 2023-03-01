@@ -18,9 +18,8 @@ const addEventsBTN = document.getElementById('addEventsBTN');
         e.preventDefault();
         $("#app").load( "forms/upload.html", ()=> {
           uploader();
+          addBackBtn();
         });
-
-
     });
 
 const createFormBTN = document.getElementById('createFormBTN');
@@ -29,6 +28,7 @@ const createFormBTN = document.getElementById('createFormBTN');
         console.log("auto form loading");
         $("#app").load( "forms/autoFORM.html", ()=> {
             autoFORM();
+            addBackBtn();
         });
     });
 
@@ -38,6 +38,9 @@ const viewFormBTN = document.getElementById('viewFormBTN');
         e.preventDefault();
         $("#app").load( "forms/viewFormResponce.html", ()=> {
             getLatestForm();
+            setTimeout(() => {
+                addBackBtn();
+            }, 6000);
         });
     });
 
@@ -47,6 +50,7 @@ const viewFeedbackBTN = document.getElementById('viewFeedbackBTN');
         e.preventDefault();
         $("#app").load( "forms/viewFeedbacks.html", ()=> {
             viewFeedback();
+            addBackBtn();
         });
     });
 
@@ -55,6 +59,17 @@ const viewCustomForm = document.getElementById('viewCustomForm');
         e.preventDefault();
         $("#app").load( "forms/startup.html", ()=> {
             startupform();
+            addBackBtn();
+        });
+    });
+}
+
+function addBackBtn(){
+    const backBTN = document.getElementById('backBTN');
+    backBTN.addEventListener('click', e => {
+        e.preventDefault();
+        $("#app").load( "forms/options.html", ()=> {
+            allOptions();
         });
     });
 }
