@@ -5,7 +5,7 @@ import { timeDifference, timeDifferenceFuture } from "./main.js";
 
 export const startupform =  async () => {
     
-    const FORMS = collection(DB,'startup');
+    const FORMS = collection(DB,'execom2023');
     const qry = query(FORMS, orderBy("UploadTimeStamp", "desc"));
     const responcesTableBody = document.getElementById('responcesTableBody');
 
@@ -41,31 +41,52 @@ function bodyTemplate (data){
 
     let template = `<tr>
                     <td>${timeDifference(new Date(), new Date(data.UploadTimeStamp))}</td>
-                    <td>${data.TeamName}</td>
-                    <td>${data.Leader.Name}</td>
-                    <td>${data.Leader.Email}</td>
-                    <td>${data.Leader.Phone}</td>
-                    <td>
-                        <a class="btn btn-dark rounded" target="_blank" href="${data.projectDoc}"><i class="bi bi-eye-fill"></i></a>
-                        
-                    </td>
+                    <td>${data.studentName}</td>
+                    <td>${data.studentEmail}</td>
+                    <td>${data.studentPhone}</td>
+
+                    <td>${data.modeOfAttending}</td>
+                    <td>${data.fieldOfStudy}</td>
+                    <td>${data.currentYear}</td>
+
                     
-                    <td>${data.FieldOfStudy}</td>
-                    <td>${data.CurrentYear}</td>
+                    <td class="modeField2">${choiceSpan(data.teamSelected)}</td>
+                    <td class="moreField">${data.wish}</td>
+                    <td class="moreField">${data.experience}</td>
+                    <td class="moreField">${data.change}</td>
+                    <td class="moreField">${data.skills}</td>
+                    
+                    
 
+                    <td>
+                        <a class="btn btn-dark rounded" target="_blank" href="${convertToURL(data.linkedin)}"><i class="bi bi-eye-fill"></i></a>
+                        <span class="invisi">${convertToURL(data.linkedin)}</span>
+                    </td>
+                    <td>
+                        <a class="btn btn-dark rounded" target="_blank" href="${convertToURL(data.portfolio)}"><i class="bi bi-eye-fill"></i></a>
+                        <span class="invisi">${convertToURL(data.portfolio)}</span>
+                    </td>
 
-                    <td>${data.Member2.Name}</td>
-                    <td>${data.Member2.Email}</td>
-
-                    <td>${data.Member3.Name}</td>
-                    <td>${data.Member3.Email}</td>
-
-                    <td>${data.Member4.Name}</td>
-                    <td>${data.Member4.Email}</td>
-
-                    <td>${data.Member5.Name}</td>
-                    <td>${data.Member5.Email}</td>
                     </tr>`
     
     return template
+}
+
+function choiceSpan (data){
+    let template = `<div class="flex-wrap gap-1 d-flex">`
+    data.forEach((e)=> {
+        template += `<li class="list-unstyled px-3 py-1 rounded-5 ${e}">${e}</li>`
+    })
+    return template + `</div>`
+}
+
+/**
+ * 
+ * @param {string} data 
+ * @returns {string}
+ */
+
+function convertToURL(data){
+    let newURL = data.includes('http') ? data : `https://${data}`
+    return newURL
 }
