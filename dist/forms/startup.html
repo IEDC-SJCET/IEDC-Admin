@@ -1,9 +1,9 @@
 <div class="w-100 min-vh-100 d-flex flex-column justify-content-start align-items-center gap-3 p-3">
     <div id="formHead">
         <div class="card shadow-lg container p-0" style="max-width: 500px;">
-            <img src="./img/image.jpg" alt="" class="card-img-top">
+            <img src="./img/banner.png" alt="" class="card-img-top">
             <div class="card-header d-flex justify-content-between">
-                <h2 class="fs-2 fw-bolder">Execom 2023</h2>
+                <h2 class="fs-2 fw-bolder">SIM'23</h2>
                 <a id="backBTN" class="greencolor fs-4"><i class="bi bi-check-circle-fill"></i></a>
             </div>
             <div class="card-body">
@@ -21,37 +21,79 @@
                     <button id="refreshBTN" class="btn btn-dark rounded">
                         Refresh <i class="bi bi-arrow-clockwise"></i>
                     </button>
+                    <button id="" onclick="copytable('firetable')" class="btn btn-dark rounded">
+                        Copy Table <i class="bi bi-clipboard"></i>
+                    </button>
             </div>
         </div>
     </div>
     <div id="formContainer" class="card shadow-lg d-flex flex-column gap-3 overflow-auto w-100 mb-3">
-        <table>
+        <table id="firetable">
             <thead>
                 <tr>
-                    <th>TIme</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <th></th>
+                    <th class="text-center CEO" colspan="5">Member 1</th>    
+                    <th class="text-center CTO" colspan="3">Member 2</th>
+                    <th class="text-center CMO" colspan="3">Member 3</th>
+                    <th class="text-center CEO" colspan="3">Member 4</th>
+                    <th class="text-center CTO" colspan="3">Member 5</th>
+                    <th class="text-center CMO" colspan="3">Member 6</th>
+                    <th class="text-start" colspan="8">Submittion Docs</th>
+                </tr>
+                <tr>
+                    <th style="min-width: 200px;">time</th>    
+                    <th style="min-width: 200px;">name</th>    
+                    <th>branch</th>
+                    <th>year</th>
+                    <th>email</th>
+                    <th>number</th>
 
-                    <th>Mode</th>
-                    <th>Dept</th>
-                    <th>Year</th>
+                    <th style="min-width: 200px;">name</th>
+                    <th>branch</th>
+                    <th>year</th>
 
-                    <th>Choice</th>
-                    <th>Wish</th>
-                    <th>Experience</th>
-                    <th>Change</th>
-                    <th>Skills</th>
+                    <th style="min-width: 200px;">name</th>
+                    <th>branch</th>
+                    <th>year</th>
 
-                    <th>Linkedin</th>
-                    <th>Portfolio</th>
+                    <th style="min-width: 200px;">name</th>
+                    <th>branch</th>
+                    <th>year</th>
 
+                    <th style="min-width: 200px;">name</th>
+                    <th>branch</th>
+                    <th>year</th>
+
+                    <th style="min-width: 200px;">name</th>
+                    <th>branch</th>
+                    <th>year</th>
+
+                    <th style="min-width: 100px;">Describe Idea</th>
+                    <th>Title</th>
+                    <th>PS Code</th>
+                    <th style="min-width: 100px;">Dependency</th>
+                    <th style="min-width: 100px;">Tech Stack</th>
+                    <th>Theme</th>
+                    <th style="min-width: 100px;">Use Case</th>
+                    <th>Document</th>
                 </tr>
             </thead>
             <tbody id="responcesTableBody"></tbody>
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    function copytable(el) {
+        var urlField = document.getElementById(el)   
+        var range = document.createRange()
+        range.selectNode(urlField)
+        window.getSelection().addRange(range) 
+        document.execCommand('copy')
+    }
+    
+</script>
 
 
 
