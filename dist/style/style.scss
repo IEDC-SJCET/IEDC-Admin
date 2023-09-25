@@ -388,3 +388,53 @@ table {
     border-bottom-left-radius: 13px !important;
     border-bottom-right-radius: 13px !important;
 }
+
+.CEO {
+    background-color: #26428b;
+    color: white;
+}
+
+.CTO {
+    background-color: var(--green);
+    color: white;
+}
+
+.COO {
+    background-color: #ffd91a;
+}
+
+.CFO {
+    background-color: #07c8f9;
+    color: white;
+}
+
+.CMO {
+    background-color: #ff6d00;
+    color: white;
+}
+
+.CCO {
+    background-color: #ed192e;
+    color: white;
+}
+
+.CSO {
+    background-color: #f8acff;
+}
+
+.invisi {
+    display: block;
+    color: transparent;
+    max-width: 1px;
+    max-height: 1px;
+    overflow: hidden;
+}
+
+.moreField {
+    min-width: 400px;
+}
+
+.modeField2 {
+    min-width: 180px;
+    padding: 1rem 0;
+}

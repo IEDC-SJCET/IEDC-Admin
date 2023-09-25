@@ -101,9 +101,10 @@ function headTemplate(data) {
 
     return `<div class="card shadow-lg container p-0" style="max-width: 500px;">
         <img src=${data.ImgURL} alt="" class="card-img-top">
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h2 class="fs-2 fw-bolder">${data.EventName}</h2>
-            ${live}
+            <a id="backBTN"> ${live} </a>
+            
         </div>
         <div class="card-body">
             <div class="d-flex gap-1"><i class="bi bi-person-fill greencolor"></i>
