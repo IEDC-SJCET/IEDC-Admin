@@ -1,44 +1,38 @@
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { DB } from "./login.js";
-import { timeDifference, timeDifferenceFuture } from "./main.js";
+import { timeDifference } from "./main.js";
 
-const firestoreName = "smart-india-hackathon";
+const firestoreName = "sih-hackathon-24";
+
 /**
  * @typedef member
  * ​@property {string} branch
  * ​@property {string} ​​name
  * ​@property {string} ​​year
- *
+ * ​@property {string} ​​email
+ * ​@property {string} ​​foodPreference
  */
 
 /**
  * @typedef firestoredata
- * ​@property {string} member1Email
- * ​@property {string} member1Phone
- *
- * ​@property {member} member1
- * ​@property {member} member2
- * ​@property {member} member3
- * ​@property {member} member4
- * ​@property {member} member5
- * ​@property {member} member6
- *
- * ​@property {string} describe
- * ​@property {string} psCode
- * ​@property {string} psTitle
+ * ​@property {string} UploadTimeStamp
  * ​@property {string} techStack
- * ​@property {string} theme
+ * ​@property {string} categoryOfProduct
+ * ​@property {string} teamName
  * ​@property {string} url
- * ​@property {string} useCase
- * ​@property {string} dependency
+ * ​@property {member} teamLeader
+ * ​@property {member[]} members
  */
 
+/**
+ * Fetch and display form data
+ */
 export const sihForm = async () => {
   const FORMS = collection(DB, firestoreName);
   const qry = query(FORMS); //, orderBy("UploadTimeStamp", "desc"));
   const responcesTableBody = document.getElementById("responcesTableBody");
 
-  callmeRightNow(qry, responcesTableBody);
+  await callmeRightNow(qry, responcesTableBody);
 
   document.getElementById("refreshBTN").addEventListener("click", (e) => {
     e.preventDefault();
@@ -46,28 +40,28 @@ export const sihForm = async () => {
   });
 };
 
-// iife i think
+// Fetch and render data
 async function callmeRightNow(qry, responcesTableBody) {
   responcesTableBody.innerHTML = ``;
   const formResponces = await getDocs(qry);
+
   let counter = 0;
 
   formResponces.forEach((doc) => {
-    let /** @type {firestoredata}*/ resData = doc.data();
+    let resData = doc.data();
     responcesTableBody.innerHTML += bodyTemplate(resData);
     counter++;
   });
+
   document.getElementById("noRes").innerHTML = counter;
 }
 
 /**
- *
+ * Create table row from the form data
  * @param {firestoredata} data
  * @returns {string}
  */
-
 function bodyTemplate(data) {
-  // <td class="modeField2">${choiceSpan(data.teamSelected)}</td>
   let template = `<tr>
                     <td>${
                       data?.UploadTimeStamp
@@ -77,69 +71,75 @@ function bodyTemplate(data) {
                           )
                         : "-"
                     }</td>
-                    <td>${data.member1.name}</td>
-                    <td>${data.member1.branch}</td>
-                    <td>${data.member1.year}</td>
+                    <td>${data.teamLeader.studentName}</td>
+                    <td>${data.teamLeader.branch}</td>
+                    <td>${data.teamLeader.currentYear}</td>
+                    <td>${data.teamLeader.studentEmail}</td>
+                    <td>${data.teamLeader.studentPhone}</td>
+                    <td>${
+                      data.teamLeader.foodPreference || ""
+                    }</td> <!-- Food Preference -->
 
-                    <td>${data.member1Email || ""}</td>
-                    <td>${data.member1Phone || ""}</td>
+                    <td>${data.members[0]?.member2Name || ""}</td>
+                    <td>${data.members[0]?.member2Branch || ""}</td>
+                    <td>${data.members[0]?.member2Year || ""}</td>
+                    <td>${data.members[0]?.member2FoodPreference || ""}</td>
 
-                    <td>${data.member2.name || ""}</td>
-                    <td>${data.member2.branch || ""}</td>
-                    <td>${data.member2.year || ""}</td>
+                    <td>${data.members[1]?.member3Name || ""}</td>
+                    <td>${data.members[1]?.member3Branch || ""}</td>
+                    <td>${data.members[1]?.member3Year || ""}</td>
+                    <td>${data.members[1]?.member3FoodPreference || ""}</td>
 
-                    <td>${data.member3.name || ""}</td>
-                    <td>${data.member3.branch || ""}</td>
-                    <td>${data.member3.year || ""}</td>
+                    <td>${data.members[2]?.member4Name || ""}</td>
+                    <td>${data.members[2]?.member4Branch || ""}</td>
+                    <td>${data.members[2]?.member4Year || ""}</td>
+                    <td>${data.members[2]?.member4FoodPreference || ""}</td>
 
-                    <td>${data.member4.name || ""}</td>
-                    <td>${data.member4.branch || ""}</td>
-                    <td>${data.member4.year || ""}</td>
+                    <td>${data.members[3]?.member5Name || ""}</td>
+                    <td>${data.members[3]?.member5Branch || ""}</td>
+                    <td>${data.members[3]?.member5Year || ""}</td>
+                    <td>${data.members[3]?.member5FoodPreference || ""}</td>
 
-                    <td>${data.member5.name || ""}</td>
-                    <td>${data.member5.branch || ""}</td>
-                    <td>${data.member5.year || ""}</td>
+                    <td>${data.members[4]?.member6Name || ""}</td>
+                    <td>${data.members[4]?.member6Branch || ""}</td>
+                    <td>${data.members[4]?.member6Year || ""}</td>
+                    <td>${data.members[4]?.member6FoodPreference || ""}</td>
 
-                    <td>${data.member6.name || ""}</td>
-                    <td>${data.member6.branch || ""}</td>
-                    <td>${data.member6.year || ""}</td>
+                    <td>${data.describe || ""}</td>
+                    <td>${data.psTitle || ""}</td>
+                    <td>${data.psCode || ""}</td>
+                    <td>${data.dependency || ""}</td>
+                    <td>${data.techStack || ""}</td>
+                    <td>${data.theme || ""}</td>
+                    <td>${data.useCase || ""}</td>
                     
-                    
-                    <td class="moreField">${data.describe || ""}</td>
-                    <td class="moreField">${data.psTitle || ""}</td>
-                    <td class="moreField">${data.psCode || ""}</td>
-                    <td class="moreField">${data.dependency || ""}</td>
-                    <td class="moreField">${data.techStack || ""}</td>
-                    <td class="moreField">${data.theme || ""}</td>
-                    <td class="moreField">${data.useCase || ""}</td>
-                    
-                    <td>
-                        <a class="btn btn-dark rounded" target="_blank" href="${convertToURL(
-                          data.url
-                        )}"><i class="bi bi-eye-fill"></i></a>
-                        <span class="invisi">${convertToURL(data.url)}</span>
-                    </td>
+               <td>
+  <a class="btn btn-dark rounded" target="_blank" href="${
+    data.url ? convertToURL(data.url) : "#"
+  }">
+    <i class="bi bi-eye-fill"></i>
+  </a>
+  <span class="invisi">${
+    data.url ? convertToURL(data.url) : "No URL provided"
+  }</span>
+</td>
 
-                    </tr>`;
-
+                  </tr>`;
   return template;
 }
 
-function choiceSpan(data) {
-  let template = `<div class="flex-wrap gap-1 d-flex">`;
-  data.forEach((e) => {
-    template += `<li class="list-unstyled px-3 py-1 rounded-5 ${e}">${e}</li>`;
-  });
-  return template + `</div>`;
-}
-
 /**
- *
+ * Converts a string into a URL if not already a full URL
  * @param {string} data
  * @returns {string}
  */
-
 function convertToURL(data) {
+  // Ensure data is defined and not null
+  if (!data) {
+    return "#"; // return a placeholder URL or empty string if data is undefined
+  }
+
+  // Check if the URL contains 'http', otherwise prepend 'https://'
   let newURL = data.includes("http") ? data : `https://${data}`;
   return newURL;
 }
