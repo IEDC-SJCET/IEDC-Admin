@@ -49,7 +49,8 @@ async function callmeRightNow(qry, responcesTableBody) {
 
   formResponces.forEach((doc) => {
     let resData = doc.data();
-    responcesTableBody.innerHTML += bodyTemplate(resData);
+    let docId = doc.id;
+    responcesTableBody.innerHTML += bodyTemplate(resData, docId);
     counter++;
   });
 
@@ -61,7 +62,7 @@ async function callmeRightNow(qry, responcesTableBody) {
  * @param {firestoredata} data
  * @returns {string}
  */
-function bodyTemplate(data) {
+function bodyTemplate(data, docId) {
   let template = `<tr>
                     <td>${
                       data?.UploadTimeStamp
@@ -104,6 +105,11 @@ function bodyTemplate(data) {
                     <td>${data.members[4]?.member6Branch || ""}</td>
                     <td>${data.members[4]?.member6Year || ""}</td>
                     <td>${data.members[4]?.member6FoodPreference || ""}</td>
+
+                    <td>${docId || ""}</td> 
+                    <td>${data.teamName || ""}</td> 
+                    <td>${data.categoryOfProduct || ""}</td> 
+                    <td>${data.countOfMembers || ""}</td> 
 
                     <td>${data.describe || ""}</td>
                     <td>${data.psTitle || ""}</td>
