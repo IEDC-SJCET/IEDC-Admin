@@ -104,35 +104,45 @@
     }
 
     function downloadCSV() {
-        // Get the table element
-        const table = document.getElementById('firetable');
-        let csvContent = '';
+        const table = document.getElementById("firetable");
+        let csvContent = "";
 
         // Extract table headers
-        const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.innerText);
-        csvContent += headers.join(',') + '\n';
+        const headerRows = table.querySelectorAll("thead tr");
+        headerRows.forEach((row, rowIndex) => {
+            const headers = Array.from(row.querySelectorAll("th"))
+                .map((th) => {
+                    // Handle colspan
+                    const colspan = th.getAttribute("colspan") || 1;
+                    return Array.from({ length: colspan }, () => th.innerText);
+                })
+                .flat();
+            csvContent += headers.join(",") + "\n";
+        });
 
         // Extract table rows
-        const rows = table.querySelectorAll('tbody tr');
-        rows.forEach(row => {
-            const cells = Array.from(row.querySelectorAll('td')).map(td => td.innerText);
-            csvContent += cells.join(',') + '\n';
+        const rows = table.querySelectorAll("tbody tr");
+        rows.forEach((row) => {
+            const cells = Array.from(row.querySelectorAll("td")).map(
+                (td) => td.innerText
+            );
+            csvContent += cells.join(",") + "\n";
         });
 
         // Create a Blob from the CSV content
-        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const blob = new Blob([csvContent], { type: "text/csv" });
         const url = URL.createObjectURL(blob);
 
         // Create a temporary link element and trigger the download
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
-        link.download = 'table-data.csv';
+        link.download = "table-data.csv";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
 
-    document.getElementById('downloadCSV').addEventListener('click', downloadCSV);
+    document.getElementById("downloadCSV").addEventListener("click", downloadCSV);
 </script>
 
 <!-- Add your JavaScript files here if any -->

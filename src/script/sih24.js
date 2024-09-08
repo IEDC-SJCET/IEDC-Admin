@@ -119,16 +119,16 @@ function bodyTemplate(data, docId) {
                     <td>${data.theme || ""}</td>
                     <td>${data.useCase || ""}</td>
                     
-               <td>
-  <a class="btn btn-dark rounded" target="_blank" href="${
-    data.url ? convertToURL(data.url) : "#"
-  }">
-    <i class="bi bi-eye-fill"></i>
-  </a>
-  <span class="invisi">${
-    data.url ? convertToURL(data.url) : "No URL provided"
-  }</span>
-</td>
+                    <td>
+                      <a class="btn btn-dark rounded" target="_blank" href="${
+                        data.url ? convertToURL(data.url) : "#"
+                      }">
+                        <i class="bi bi-eye-fill"></i>
+                      </a>
+                      <span class="invisi">${
+                        data.url ? convertToURL(data.url) : "No URL provided"
+                      }</span>
+                    </td>
 
                   </tr>`;
   return template;
