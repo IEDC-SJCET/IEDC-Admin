@@ -1,4 +1,4 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { DB } from "./login.js";
 import { timeDifference } from "./main.js";
 
@@ -29,7 +29,7 @@ const firestoreName = "sih-hackathon-24";
  */
 export const sihForm = async () => {
   const FORMS = collection(DB, firestoreName);
-  const qry = query(FORMS); //, orderBy("UploadTimeStamp", "desc"));
+  const qry = query(FORMS, orderBy("UploadTimeStamp", "desc")); // or 'desc' for descending
   const responcesTableBody = document.getElementById("responcesTableBody");
 
   await callmeRightNow(qry, responcesTableBody);
