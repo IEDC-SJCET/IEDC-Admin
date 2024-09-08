@@ -10,12 +10,6 @@
                 <div class="d-flex gap-1"><i class="bi bi-person-fill greencolor"></i>
                     x<span id="noRes"></span>
                 </div>
-                <!-- <div class="d-flex gap-1"><i class="bi bi-clock-fill greencolor"></i>
-                    <span>Form ends in March 10</span>
-                </div> -->
-                <!-- <div class="d-flex gap-1"><i class="bi bi-clock-fill greencolor"></i>
-                    <span>Event starts in February 24</span>
-                </div> -->
             </div>
             <div class="d-flex gap-1 card-footer">
                 <button id="refreshBTN" class="btn btn-dark rounded">
@@ -23,6 +17,10 @@
                 </button>
                 <button id="" onclick="copytable('firetable')" class="btn btn-dark rounded">
                     Copy Table <i class="bi bi-clipboard"></i>
+                </button>
+                <!-- New Download CSV Button -->
+                <button id="downloadCSV" class="btn btn-dark rounded">
+                    Download CSV <i class="bi bi-file-earmark-spreadsheet"></i>
                 </button>
             </div>
         </div>
@@ -95,43 +93,47 @@
         </table>
     </div>
 </div>
-</div>
 
 <script type="text/javascript">
-
     function copytable(el) {
-        var urlField = document.getElementById(el)
-        var range = document.createRange()
-        range.selectNode(urlField)
-        window.getSelection().addRange(range)
-        document.execCommand('copy')
+        var urlField = document.getElementById(el);
+        var range = document.createRange();
+        range.selectNode(urlField);
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
     }
 
+    function downloadCSV() {
+        // Get the table element
+        const table = document.getElementById('firetable');
+        let csvContent = '';
+
+        // Extract table headers
+        const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.innerText);
+        csvContent += headers.join(',') + '\n';
+
+        // Extract table rows
+        const rows = table.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const cells = Array.from(row.querySelectorAll('td')).map(td => td.innerText);
+            csvContent += cells.join(',') + '\n';
+        });
+
+        // Create a Blob from the CSV content
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+
+        // Create a temporary link element and trigger the download
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'table-data.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    document.getElementById('downloadCSV').addEventListener('click', downloadCSV);
 </script>
 
-
-
-<!-- <div class="card-body list-unstyled d-flex flex-column gap-2">
-            <li><i class="bi bi-person-fill"></i> Responces: 1983</li>
-            <li><i class="bi bi-hourglass-split"></i> Ends in 2 days</li>
-            <div class="d-flex gap-1 flex-wrap">
-                <button onclick="" class="btn btn-dark rounded">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </button>
-                <button onclick="" class="btn btn-dark rounded d-none">
-                    <i class="bi bi-graph-up-arrow"></i>
-                </button>
-                <button onclick="" class="btn btn-dark rounded d-none">
-                    <i class="bi bi-table"></i>
-                </button>
-                <button onclick="" class="btn btn-dark rounded ">
-                    <i class="bi bi-stop-circle-fill"></i>
-                </button>
-                <button onclick="" class="btn btn-dark rounded d-none">
-                    <i class="bi bi-clock-history"></i>
-                </button>
-                <button onclick="" class="btn btn-dark rounded d-none">
-                    <i class="bi bi-database-fill"></i>
-                </button>
-            </div>
-        </div> -->
+<!-- Add your JavaScript files here if any -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
