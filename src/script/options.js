@@ -5,6 +5,7 @@ import { viewFeedback } from "./getFEEDBACK.js";
 import { getLatestForm } from "./formTable";
 import { startupform } from "./startup.js";
 import { sihForm } from "./sih24.js";
+import { sihSelectedForm } from "./sih24Selected.js";
 
 export function allOptions() {
   const authLogoutBTN = document.getElementById("authLogoutBTN");
@@ -65,6 +66,16 @@ export function allOptions() {
     e.preventDefault();
     $("#app").load("forms/sih24.html", () => {
       sihForm();
+      addBackBtn();
+    });
+  });
+  const viewSIH24SelectedForm = document.getElementById(
+    "viewSIH24SelectedForm"
+  );
+  viewSIH24SelectedForm.addEventListener("click", (e) => {
+    e.preventDefault();
+    $("#app").load("forms/sih24Selected.html", () => {
+      sihSelectedForm();
       addBackBtn();
     });
   });
