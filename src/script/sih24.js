@@ -11,6 +11,8 @@ const firestoreName = "sih-hackathon-24";
  * ​@property {string} ​​year
  * ​@property {string} ​​email
  * ​@property {string} ​​foodPreference
+ * @property {string} linkedin
+ * @property {string} portfolio
  */
 
 /**
@@ -77,6 +79,8 @@ function bodyTemplate(data, docId) {
                     <td>${data.teamLeader.currentYear}</td>
                     <td>${data.teamLeader.studentEmail}</td>
                     <td>${data.teamLeader.studentPhone}</td>
+                    <td>${data.teamLeader.linkedin ? `<a href="${data.teamLeader.linkedin}">${data.teamLeader.linkedin}</a>` : ``}</td>
+                    <td>${data.teamLeader.portfolio ? `<a href="${data.teamLeader.portfolio}">${data.teamLeader.portfolio}</a>` : ``}</td>
                     <td>${
                       data.teamLeader.foodPreference || ""
                     }</td> <!-- Food Preference -->
@@ -115,7 +119,7 @@ function bodyTemplate(data, docId) {
                     <td>${data.psTitle || ""}</td>
                     <td>${data.psCode || ""}</td>
                     <td>${data.dependency || ""}</td>
-                    <td>${data.techStack || ""}</td>
+                    <td>${data.techStack.split(",").join(";") || ""}</td>
                     <td>${data.theme || ""}</td>
                     <td>${data.useCase || ""}</td>
                     
