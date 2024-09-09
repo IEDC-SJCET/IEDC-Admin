@@ -79,33 +79,47 @@ function bodyTemplate(data, docId) {
                     <td>${data.teamLeader.currentYear}</td>
                     <td>${data.teamLeader.studentEmail}</td>
                     <td>${data.teamLeader.studentPhone}</td>
-                    <td>${data.teamLeader.linkedin ? `<a href="${data.teamLeader.linkedin}">${data.teamLeader.linkedin}</a>` : ``}</td>
-                    <td>${data.teamLeader.portfolio ? `<a href="${data.teamLeader.portfolio}">${data.teamLeader.portfolio}</a>` : ``}</td>
+                    <td>${data.teamLeader.gender}</td>
+                    <td>${
+                      data.teamLeader.linkedin
+                        ? `<a href="${data.teamLeader.linkedin}">${data.teamLeader.linkedin}</a>`
+                        : ``
+                    }</td>
+                    <td>${
+                      data.teamLeader.portfolio
+                        ? `<a href="${data.teamLeader.portfolio}">${data.teamLeader.portfolio}</a>`
+                        : ``
+                    }</td>
                     <td>${
                       data.teamLeader.foodPreference || ""
                     }</td> <!-- Food Preference -->
 
                     <td>${data.members[0]?.member2Name || ""}</td>
+                    <td>${data.members[0]?.member2Email || ""}</td>
                     <td>${data.members[0]?.member2Branch || ""}</td>
                     <td>${data.members[0]?.member2Year || ""}</td>
                     <td>${data.members[0]?.member2FoodPreference || ""}</td>
 
                     <td>${data.members[1]?.member3Name || ""}</td>
+                    <td>${data.members[1]?.member3Email || ""}</td>
                     <td>${data.members[1]?.member3Branch || ""}</td>
                     <td>${data.members[1]?.member3Year || ""}</td>
                     <td>${data.members[1]?.member3FoodPreference || ""}</td>
 
                     <td>${data.members[2]?.member4Name || ""}</td>
+                    <td>${data.members[2]?.member4Email || ""}</td>
                     <td>${data.members[2]?.member4Branch || ""}</td>
                     <td>${data.members[2]?.member4Year || ""}</td>
                     <td>${data.members[2]?.member4FoodPreference || ""}</td>
 
                     <td>${data.members[3]?.member5Name || ""}</td>
+                    <td>${data.members[3]?.member5Email || ""}</td>
                     <td>${data.members[3]?.member5Branch || ""}</td>
                     <td>${data.members[3]?.member5Year || ""}</td>
                     <td>${data.members[3]?.member5FoodPreference || ""}</td>
 
                     <td>${data.members[4]?.member6Name || ""}</td>
+                    <td>${data.members[4]?.member6Email || ""}</td>
                     <td>${data.members[4]?.member6Branch || ""}</td>
                     <td>${data.members[4]?.member6Year || ""}</td>
                     <td>${data.members[4]?.member6FoodPreference || ""}</td>
