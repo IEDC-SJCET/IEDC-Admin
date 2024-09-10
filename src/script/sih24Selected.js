@@ -145,10 +145,10 @@ function bodyTemplate(data, docId) {
                     <td>${data.describe || ""}</td>
                     <td>${data.psTitle || ""}</td>
                     <td>${data.psCode || ""}</td>
-                    <td>${data.dependency || ""}</td>
+                    <td>${data.psTitle || ""}</td>
+                    <td>${data.psTheme || ""}</td>
+                    <td>${data.psDescribe || ""}</td>
                     <td>${data.techStack.split(",").join(";") || ""}</td>
-                    <td>${data.theme || ""}</td>
-                    <td>${data.useCase || ""}</td>
                     
                     <td>
                       <a class="btn btn-dark rounded" target="_blank" href="${
